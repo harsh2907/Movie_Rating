@@ -10,6 +10,7 @@ import com.example.movierating.data_source.remote.models.search_result.Result
 import com.example.movierating.data_source.utils.Others
 import com.example.movierating.databinding.SearchResultTemplateBinding
 
+//Recycle view adapter to show cast search results
 class MainScreenViewAdapter : RecyclerView.Adapter<MainScreenViewAdapter.ResultViewHolder>() {
     inner class ResultViewHolder(val item: SearchResultTemplateBinding) :
         RecyclerView.ViewHolder(item.root)

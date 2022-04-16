@@ -1,5 +1,6 @@
 package com.example.movierating.ui.presentation.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -10,6 +11,8 @@ import com.example.movierating.data_source.remote.models.movie_details.Similar
 import com.example.movierating.data_source.utils.Others
 import com.example.movierating.databinding.SimilarTemplateBinding
 
+//Recycle view adapter to show similar results
+@SuppressLint("SetTextI18n")
 class SimilarMoviesAdapter:RecyclerView.Adapter<SimilarMoviesAdapter.SimilarViewHolder>() {
 
     inner class SimilarViewHolder(val item:SimilarTemplateBinding):RecyclerView.ViewHolder(item.root)

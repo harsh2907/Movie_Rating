@@ -16,7 +16,7 @@ import com.example.movierating.databinding.ActivityMainBinding.bind
 import com.example.movierating.databinding.ActivityMainBinding.inflate
 import com.example.movierating.databinding.CastTemplateBinding
 
-
+//Recycle view adapter to show cast members
 @SuppressLint("SetTextI18n")
 class CastAdapter : RecyclerView.Adapter<CastAdapter.ResultViewHolder>() {
     inner class ResultViewHolder(val item: CastTemplateBinding) : RecyclerView.ViewHolder(item.root)
