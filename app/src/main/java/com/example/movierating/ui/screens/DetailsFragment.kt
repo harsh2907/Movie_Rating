@@ -44,7 +44,7 @@ class DetailsFragment : Fragment() {
     ): View {
         //View Binding to inflate view
         binding = FragmentDetailsBinding.inflate(layoutInflater)
-        return binding.root;
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,6 +52,7 @@ class DetailsFragment : Fragment() {
 
         //Calling the function to get details
         viewModel.getMovieDetails(args.id)
+
 
         lifecycleScope.launchWhenCreated {
             viewModel.movieDetails.collectLatest { state ->
@@ -62,8 +63,8 @@ class DetailsFragment : Fragment() {
                         binding.detailsTopbar.visibility = View.INVISIBLE
                         binding.loadingBar.visibility = View.VISIBLE
                     }
+                    //If state catches error
                     state.errorMessage.isNotBlank() -> {
-                        //If state catches error
                         binding.detailsScreen.visibility = View.VISIBLE
                         binding.detailsTopbar.visibility = View.VISIBLE
                         binding.loadingBar.visibility = View.INVISIBLE
@@ -104,7 +105,7 @@ class DetailsFragment : Fragment() {
 
         //Setting up details
         binding.tvDuration.text =
-            "${details.releaseYear} \u2022 ${details.contentRating?: "N/A"} \u2022 ${details.duration ?: "N/A"}"
+            "${details.releaseYear} \u2022 ${details.contentRating?: "Not rated"} \u2022 ${details.duration ?: "N/A"}"
         binding.tvMovieName.text = details.movieName
         binding.tvIMDbRating.text = details.imdbRating
 
@@ -141,6 +142,7 @@ class DetailsFragment : Fragment() {
             adapter = similarAdapter
         }
 
+        //Navigation on clicking on similar movie
         similarAdapter.setOnItemClicked {
             val bundle = Bundle().apply {
                 putString("id",it.id)
@@ -148,6 +150,7 @@ class DetailsFragment : Fragment() {
             findNavController().navigate(R.id.action_detailsFragment_self,bundle)
 
         }
+        binding.llMoreLikeThis.visibility = if(details.similars.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE
 
     }
 
