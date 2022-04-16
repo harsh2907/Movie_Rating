@@ -60,8 +60,10 @@ class MainScreenFragment : Fragment() {
                     return true
                 }
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    if(newText?.length == 0){
+                    if(newText.isNullOrEmpty()){
                         searchAdapter.differ.submitList(emptyList())
+                        binding.llAnimation.visibility = View.VISIBLE
+                        binding.animationView.playAnimation()
                     }
                    return true
                 }

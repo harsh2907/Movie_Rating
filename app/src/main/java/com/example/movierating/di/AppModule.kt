@@ -1,7 +1,8 @@
 package com.example.movierating.di
 
-import com.example.movierating.data_source.remote.response.Constants
+
 import com.example.movierating.data_source.remote.response.MovieResponse
+import com.example.movierating.data_source.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
