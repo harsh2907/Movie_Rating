@@ -4,6 +4,7 @@ import com.example.movierating.data_source.remote.models.movie_details.Actor
 import com.example.movierating.data_source.remote.models.movie_details.Similar
 import com.example.movierating.data_source.remote.models.search_result.Result
 
+//Data class to map movie details into this class
 data class MovieDetails(
     val id:String?=null,
     val movieName:String?="N/A",

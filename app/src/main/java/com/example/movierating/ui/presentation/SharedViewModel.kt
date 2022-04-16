@@ -21,16 +21,20 @@ import javax.inject.Inject
 class SharedViewModel @Inject constructor(
     private val repository: MovieRepository
 ):ViewModel(){
+    //Variable to manage search results
     private var _searchResults:MutableStateFlow<SearchResultState> = MutableStateFlow(SearchResultState())
     val searchResults = _searchResults.asStateFlow()
 
+    //Variable to manage movie details
     private var _movieDetails:MutableStateFlow<MovieDetailsState> = MutableStateFlow(MovieDetailsState())
     val movieDetails = _movieDetails.asStateFlow()
 
+    //Function to provide search result
     fun getSearchResults(query:String){
         viewModelScope.launch {
             repository.searchMovie(query).collectLatest {  response->
                 when(response){
+                    //if response is successful
                     is Response.Success ->{
                         _searchResults.value = searchResults.value.copy(
                             result = response.data ?: emptyList(),
@@ -38,6 +42,7 @@ class SharedViewModel @Inject constructor(
                             errorMessage = ""
                         )
                     }
+                    //if response is loading
                     is Response.Loading->{
                         _searchResults.value = searchResults.value.copy(
                             result = response.data ?: emptyList(),
@@ -45,6 +50,7 @@ class SharedViewModel @Inject constructor(
                             errorMessage = ""
                         )
                     }
+                    //if response got an error
                     is Response.Error->{
                         _searchResults.value = searchResults.value.copy(
                             result = response.data ?: emptyList(),
@@ -58,11 +64,12 @@ class SharedViewModel @Inject constructor(
 
     }
 
-
+    //Function to get movie details
     fun getMovieDetails(id:String){
         viewModelScope.launch {
             repository.movieDetails(id).collectLatest {  response->
                 when(response){
+                    //if response is successful
                     is Response.Success ->{
                         _movieDetails.value = movieDetails.value.copy(
                             result = response.data ?: MovieDetails(),
@@ -70,6 +77,7 @@ class SharedViewModel @Inject constructor(
                             errorMessage = ""
                         )
                     }
+                    //if response is loading
                     is Response.Loading->{
                         _movieDetails.value = movieDetails.value.copy(
                             result = response.data ?: MovieDetails(),
@@ -77,6 +85,7 @@ class SharedViewModel @Inject constructor(
                             errorMessage = ""
                         )
                     }
+                    //if response got an error
                     is Response.Error->{
                         _movieDetails.value = movieDetails.value.copy(
                             result = response.data ?: MovieDetails(),

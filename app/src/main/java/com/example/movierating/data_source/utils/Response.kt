@@ -1,5 +1,6 @@
 package com.example.movierating.data_source.utils
 
+//Generic class to handle api response
 sealed class Response<T>(
     val data:T?=null,
     val message:String?=null

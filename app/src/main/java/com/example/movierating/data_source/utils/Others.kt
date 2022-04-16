@@ -9,6 +9,7 @@ import com.google.android.material.chip.Chip
 
 object Others {
 
+    //Shimmer effect for loading
     fun getShimmer(): ShimmerDrawable {
         val shimmer = Shimmer.AlphaHighlightBuilder()// The attributes for a ShimmerDrawable is set by this builder
             .setDuration(1000) // how long the shimmering animation takes to do one full sweep
@@ -26,6 +27,7 @@ object Others {
         return shimmerDrawable
     }
 
+    //Function to create chip dynamically
     fun createChip(context: Context, chipName: String) = Chip(context).apply { text = chipName }
 
 
