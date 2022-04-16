@@ -71,6 +71,7 @@ class MainScreenFragment : Fragment() {
             })
         }
 
+        //On clicking on search result
         searchAdapter.setOnItemClicked {
                 val bundle = Bundle().apply {
                     putString("id",it.id)
@@ -133,11 +134,13 @@ class MainScreenFragment : Fragment() {
 
     }
 
+    //Function to start animation
     private fun setupLottieAnimation(){
         binding.llAnimation.visibility = View.VISIBLE
         binding.animationView.playAnimation()
     }
 
+    //Function to stop animation
     private fun stopAnimation(){
         binding.llAnimation.visibility = View.INVISIBLE
         binding.animationView.pauseAnimation()

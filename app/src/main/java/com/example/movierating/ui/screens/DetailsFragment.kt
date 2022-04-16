@@ -53,7 +53,7 @@ class DetailsFragment : Fragment() {
         //Calling the function to get details
         viewModel.getMovieDetails(args.id)
 
-
+        //Making changes on change of state
         lifecycleScope.launchWhenCreated {
             viewModel.movieDetails.collectLatest { state ->
                 when {
@@ -63,6 +63,7 @@ class DetailsFragment : Fragment() {
                         binding.detailsTopbar.visibility = View.INVISIBLE
                         binding.loadingBar.visibility = View.VISIBLE
                     }
+
                     //If state catches error
                     state.errorMessage.isNotBlank() -> {
                         binding.detailsScreen.visibility = View.VISIBLE
@@ -70,13 +71,13 @@ class DetailsFragment : Fragment() {
                         binding.loadingBar.visibility = View.INVISIBLE
 
                         findNavController().navigateUp()
-                        //Showing snackbar on error
+                        //Showing snack bar on error
                         Snackbar.make(
                             binding.root,
                             state.errorMessage,
                             Snackbar.LENGTH_LONG
                         ).setAction("Close") {
-                            //closes snackbar
+                            //closes snack bar
                         }.show()
                     }
                     else -> {
